@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCC - Projeto AgroTask | Gestão Rural</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Aplicando a fonte Inter como padrão */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar para um look mais limpo */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #64748b;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        /* Estilo para o <details> (acordeão do SQL) */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+        details[open] > summary .arrow-down {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <!-- Navbar -->
+    <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Título do Projeto -->
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-extrabold text-blue-600">AgroTask</span>
+                </div>
+                <!-- Info do Curso -->
+                <div class="hidden sm:block sm:ml-6">
+                    <span class="font-semibold text-slate-600">Ciência de Dados | UniCEUB</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Seção Hero -->
+    <header class="bg-slate-800 text-white pt-24 pb-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+                Projeto AgroTask
+            </h1>
+            <p class="mt-6 text-xl text-slate-300 max-w-2xl mx-auto">
+                Uma solução para automatizar a gestão de atividades rurais, integrando <strong>JetBov</strong> e <strong>WhatsApp</strong> para otimizar a comunicação entre gestores e a equipe de campo.
+            </p>
+            <p class="mt-4 text-sm text-slate-400">(Projeto Integrador Ildo - TCC)</p>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8 -mt-16">
+        
+        <!-- Seção: Problema e Solução -->
+        <section id="overview" class="mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                
+                <!-- Card: O Desafio -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                    <div class="p-6 lg:p-8">
+                        <div class="flex items-center">
+                            <svg class="h-10 w-10 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                            </svg>
+                            <h2 class="ml-4 text-3xl font-bold text-slate-900">O Desafio</h2>
+                        </div>
+                        <p class="mt-5 text-lg text-slate-600">
+                            Atualmente, gestores de fazendas que utilizam o JetBov para registrar manejos precisam comunicar as tarefas diárias (alimentação, vacinação, etc.) aos seus funcionários <strong>manualmente via WhatsApp</strong>.
+                        </p>
+                        <ul class="mt-4 space-y-2 list-disc list-inside text-slate-600">
+                            <li>Processo lento e suscetível a falhas.</li>
+                            <li>Falta de confirmação de leitura e execução.</li>
+                            <li>Comunicação descentralizada e desorganizada.</li>
+                            <li>Dificuldade em monitorar o progresso em tempo real.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card: A Solução -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                    <div class="p-6 lg:p-8">
+                        <div class="flex items-center">
+                             <svg class="h-10 w-10 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                            </svg>
+                            <h2 class="ml-4 text-3xl font-bold text-slate-900">A Solução</h2>
+                        </div>
+                        <p class="mt-5 text-lg text-slate-600">
+                            O <strong>AgroTask</strong> é uma plataforma web que atua como o "cérebro" central, conectando as duas pontas da operação:
+                        </p>
+                        <ul class="mt-4 space-y-2 list-disc list-inside text-slate-600">
+                            <li><strong>Importa</strong> dados de rebanhos, lotes e atividades da API do JetBov.</li>
+                            <li><strong>Automatiza</strong> o envio de tarefas via API oficial do WhatsApp (Meta).</li>
+                            <li><strong>Recebe confirmações</strong> de execução das tarefas dos funcionários pelo próprio WhatsApp.</li>
+                            <li><strong>Gera relatórios</strong> e centraliza o histórico de atividades.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Seção: Arquitetura e Integrações -->
+        <section id="architecture" class="mb-16 p-6 lg:p-8 bg-white rounded-2xl shadow-xl">
+            <h2 class="text-3xl font-bold text-center mb-8">Arquitetura e Integrações</h2>
+            
+            <p class="text-center text-lg text-slate-600 mb-10 max-w-3xl mx-auto">
+                O sistema é construído sobre uma arquitetura RESTful (RNF07), garantindo escalabilidade e manutenibilidade. A comunicação flui através de duas integrações-chave (RNF04).
+            </p>
+
+            <!-- Diagrama de Arquitetura Simplificado -->
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0">
+                <!-- Bloco JetBov -->
+                <div class="flex flex-col items-center p-6 bg-slate-100 rounded-lg shadow-md w-60 text-center">
+                    <svg class="h-12 w-12 text-blue-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h12M3.75 3.75h16.5M3.75 12h16.5m-16.5 4.5h16.5M3.75 12h16.5" />
+                    </svg>
+                    <span class="text-xl font-bold mt-2">JetBov API</span>
+                    <p class="text-sm text-slate-600 mt-1">Sincroniza rebanhos, lotes e atividades (RF02, RF09).</p>
+                </div>
+
+                <!-- Seta de Conexão -->
+                <div class="text-3xl font-bold text-slate-400 mx-5 transform rotate-90 md:rotate-0">→</div>
+                
+                <!-- Bloco AgroTask -->
+                <div class="flex flex-col items-center p-6 bg-blue-600 text-white rounded-lg shadow-xl w-60 text-center scale-105">
+                    <svg class="h-12 w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+                    </svg>
+                    <span class="text-2xl font-extrabold mt-2">AgroTask</span>
+                    <p class="text-sm text-blue-100 mt-1">Gestão, agendamento e processamento de tarefas.</p>
+                </div>
+
+                <!-- Seta de Conexão -->
+                <div class="text-3xl font-bold text-slate-400 mx-5 transform rotate-90 md:rotate-0">→</div>
+
+                <!-- Bloco WhatsApp -->
+                <div class="flex flex-col items-center p-6 bg-slate-100 rounded-lg shadow-md w-60 text-center">
+                    <svg class="h-12 w-12 text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 2.056l-1.263.947a11.031 11.031 0 0 0 5.05 5.05l.947-1.263a1.875 1.875 0 0 1 2.056-.694l4.423 1.105c.834.209 1.42.959 1.42 1.819V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 7.5V5.25H4.5a.75.75 0 0 0 0-1.5H1.5Z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-xl font-bold mt-2">WhatsApp API</span>
+                    <p class="text-sm text-slate-600 mt-1">Envia alertas e recebe confirmações (RF04, RF05).</p>
+                </div>
+            </div>
+            
+            <!-- Detalhe do Banco de Dados -->
+            <div class="mt-10 text-center">
+                <h3 class="text-xl font-semibold">Banco de Dados</h3>
+                <p class="text-slate-600">
+                    Todos os dados são persistidos em um banco de dados relacional <strong>PostgreSQL</strong> (RNF06), garantindo integridade e performance.
+                </p>
+            </div>
+        </section>
+
+        <!-- Seção: Requisitos Funcionais (Features) -->
+        <section id="features" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-10">Principais Funcionalidades (Requisitos Funcionais)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Feature Card -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-3">Gestão de Usuários e Tarefas</h3>
+                    <p class="text-slate-600">Plataforma central para gestores cadastrarem usuários e criarem/atribuírem tarefas agropecuárias (alimentação, vacinação, etc.).</p>
+                    <span class="text-xs font-semibold text-blue-600 mt-2 block">RF01, RF03, RF08</span>
+                </div>
+                
+                <!-- Feature Card -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-3">Integração e Sincronia JetBov</h3>
+                    <p class="text-slate-600">Importação automática de dados de rebanhos e lotes, e sincronização constante para manter os dados atualizados.</p>
+                    <span class="text-xs font-semibold text-blue-600 mt-2 block">RF02, RF09</span>
+                </div>
+
+                <!-- Feature Card -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-3">Notificações via WhatsApp</h3>
+                    <p class="text-slate-600">Envio automático de mensagens para funcionários sobre tarefas pendentes, com lembretes e status de conclusão.</p>
+                    <span class="text-xs font-semibold text-blue-600 mt-2 block">RF04</span>
+                </div>
+
+                <!-- Feature Card -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-3">Confirmação de Execução</h3>
+                    <p class="text-slate-600">Permite que o funcionário responda pelo próprio WhatsApp para confirmar a execução de uma tarefa, fechando o ciclo.</p>
+                    <span class="text-xs font-semibold text-blue-600 mt-2 block">RF05</span>
+                </div>
+
+                <!-- Feature Card -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-3">Relatórios e Histórico</h3>
+                    <p class="text-slate-600">Geração de relatórios de desempenho e produtividade, com histórico de interações para auditoria.</p>
+                    <span class="text-xs font-semibold text-blue-600 mt-2 block">RF06, RF07</span>
+                </div>
+
+                <!-- Feature Card -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-3">Exportação de Dados</h3>
+                    <p class="text-slate-600">Capacidade de exportar relatórios de atividades em formatos comuns, como PDF e Excel, para análise externa.</p>
+                    <span class="text-xs font-semibold text-blue-600 mt-2 block">RF10</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Requisitos Não Funcionais (Pilares Técnicos) -->
+        <section id="rnf" class="mb-16 p-6 lg:p-8 bg-white rounded-2xl shadow-xl">
+            <h2 class="text-3xl font-bold text-center mb-10">Pilares Técnicos (Requisitos Não Funcionais)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Pilar Card -->
+                <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                    <h3 class="text-xl font-bold mb-3">Usabilidade e Acesso</h3>
+                    <ul class="space-y-2 list-disc list-inside text-slate-600">
+                        <li>Interface web responsiva (mobile/desktop) (RNF01).</li>
+                        <li>Navegação intuitiva e linguagem simples, adaptada ao público rural (RNF08).</li>
+                        <li>Suporte a comandos de voz (detalhado no doc).</li>
+                    </ul>
+                </div>
+                <!-- Pilar Card -->
+                <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                    <h3 class="text-xl font-bold mb-3">Segurança e Confiabilidade</h3>
+                    <ul class="space-y-2 list-disc list-inside text-slate-600">
+                        <li>Autenticação segura com JWT e criptografia SSL (RNF02).</li>
+                        <li>Backups automáticos diários do banco de dados (RNF10).</li>
+                        <li>Logs automáticos de falhas e eventos críticos (RNF09).</li>
+                    </ul>
+                </div>
+                <!-- Pilar Card -->
+                <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                    <h3 class="text-xl font-bold mb-3">Desempenho e Escalabilidade</h3>
+                    <ul class="space-y-2 list-disc list-inside text-slate-600">
+                        <li>Arquitetura RESTful (RNF07).</li>
+                        <li>Tempo de resposta médio inferior a 3s (RNF03).</li>
+                        <li>Suporte para até 500 usuários simultâneos (RNF05).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Documentação Técnica (ERD e SQL) -->
+        <section id="docs" class="mb-16 p-6 lg:p-8 bg-white rounded-2xl shadow-xl">
+            <h2 class="text-3xl font-bold text-center mb-10">Documentação Técnica</h2>
+            
+            <!-- Modelo de Dados -->
+            <h3 class="text-2xl font-bold mb-4">Modelo de Dados (ERD)</h3>
+            <p class="text-slate-600 mb-6">
+                permitindo que várias tarefas sejam atribuídas a vários usuários.
+            </p>
+            <div class="bg-slate-100 rounded-lg p-4 border border-slate-200 flex justify-center items-center">
+                <!-- 
+                    IMPORTANTE: Para esta imagem aparecer:
+                    1. Salve este arquivo index.html no seu computador.
+                    2. Coloque o seu arquivo de imagem "erd_activity_system_v2_hd.png"
+                       na MESMA PASTA onde você salvou o index.html.
+                -->
+                <img src="erd_activity_system_v2_hd.png" 
+                     alt="Diagrama ERD do banco de dados AgroTask" 
+                     class="rounded-md shadow-md max-w-full h-auto"
+                     onerror="this.alt='Erro ao carregar a imagem. Verifique se o nome do arquivo está correto e no mesmo diretório.'; this.src='https://placehold.co/800x450/e2e8f0/c70000?text=Imagem+n%C3%A3o+encontrada';">
+            </div>
+            
+            <!-- Esquema SQL -->
+            <h3 class="text-2xl font-bold mt-10 mb-4">Esquema SQL (PostgreSQL)</h3>
+            <p class="text-slate-600 mb-4">
+                Abaixo está o esquema SQL completo (extraído de <code>agrotask-sql.txt</code>) usado para criar a estrutura do banco de dados no PostgreSQL.
+            </p>
+            <details class="bg-slate-900 text-white rounded-lg overflow-hidden">
+                <summary class="p-4 flex justify-between items-center bg-slate-800 hover:bg-slate-700 transition-colors">
+                    <span class="font-mono text-lg font-semibold">Ver / Ocultar Esquema SQL</span>
+                    <svg class="arrow-down h-6 w-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
+                </summary>
+                <pre class="p-4 text-sm overflow-x-auto"><code class="language-sql">
+-- WARNING: This schema is for context only and is not meant to be run.
+-- Table order and constraints may not be valid for execution.
+
+CREATE TABLE public.Activity (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  title text NOT NULL,
+  description text,
+  createdAt timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  status USER-DEFINED NOT NULL DEFAULT 'pending'::"ActivityStatus",
+  isRepeating boolean DEFAULT false,
+  repeatInterval integer DEFAULT 1,
+  repeatUnit USER-DEFINED DEFAULT 'day'::"RepeatUnit",
+  repeatEndType USER-DEFINED DEFAULT 'never'::"RepeatEndType",
+  repeatEndDate date,
+  repeatOccurrences integer,
+  time time without time zone,
+  messageTemplateId uuid,
+  customMessage text,
+  messageString text,
+  repeatStartDate timestamp without time zone,
+  scheduledDate timestamp without time zone,
+  scheduledTime text,
+  roles ARRAY DEFAULT '{}'::text[],
+  CONSTRAINT Activity_pkey PRIMARY KEY (id),
+  CONSTRAINT activity_messagetemplateid_fkey FOREIGN KEY (messageTemplateId) REFERENCES public.MessageTemplate(id)
+);
+CREATE TABLE public.ActivityUsers (
+  activityId uuid NOT NULL,
+  userId uuid NOT NULL,
+  CONSTRAINT ActivityUsers_pkey PRIMARY KEY (activityId, userId),
+  CONSTRAINT activityusers_activityid_fkey FOREIGN KEY (activityId) REFERENCES public.Activity(id),
+  CONSTRAINT activityusers_userid_fkey FOREIGN KEY (userId) REFERENCES public.User(id)
+);
+CREATE TABLE public.AdminAccount (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  temporaryPassword text NOT NULL,
+  createdAt timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  name text NOT NULL DEFAULT ''::text,
+  email text NOT NULL DEFAULT ''::text UNIQUE,
+  phone text NOT NULL DEFAULT ''::text,
+  CONSTRAINT AdminAccount_pkey PRIMARY KEY (id)
+);
+CREATE TABLE public.AdminReminder (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  title text NOT NULL,
+  description text,
+  createdAt timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  isRepeating boolean DEFAULT false,
+  repeatInterval integer DEFAULT 1,
+  repeatUnit USER-DEFINED DEFAULT 'day'::"RepeatFrequency",
+  repeatStartDate timestamp without time zone,
+  repeatEndType USER-DEFINED DEFAULT 'never'::"RepeatEndType",
+  repeatEndDate timestamp without time zone,
+  repeatOccurrences integer,
+  scheduledDate timestamp without time zone,
+  scheduledTime text,
+  messageString text,
+  CONSTRAINT AdminReminder_pkey PRIMARY KEY (id)
+);
+CREATE TABLE public.MessageTemplate (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  name text NOT NULL,
+  category text NOT NULL,
+  templateBody text NOT NULL,
+  createdAt timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT MessageTemplate_pkey PRIMARY KEY (id)
+);
+CREATE TABLE public.User (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  name text NOT NULL,
+  phone text UNIQUE,
+  email text UNIQUE,
+  description text,
+  tags ARRAY DEFAULT '{}'::text[],
+  status USER-DEFINED NOT NULL DEFAULT 'active'::"UserStatus",
+  createdAt timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT User_pkey PRIMARY KEY (id)
+);
+CREATE TABLE public.WorkShift (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  alertMinutesBefore integer NOT NULL DEFAULT 0,
+  createdAt timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  startTime text NOT NULL,
+  endTime text NOT NULL,
+  CONSTRAINT WorkShift_pkey PRIMARY KEY (id)
+);
+                </code></pre>
+            </details>
+        </section>
+
+        <!-- Seção: Equipe -->
+        <section id="team" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-10">Equipe do Projeto</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6">
+                <!-- Nomes da equipe do Documento de Requisitos -->
+                <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+                    <span class="text-lg font-semibold">Carlos Mateo Wall</span>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+                    <span class="text-lg font-semibold">Joao Victor Moura</span>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+                    <span class="text-lg font-semibold">Lucas Leandro</span>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+                    <span class="text-lg font-semibold">Jamille G.</span>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+                    <span class="text-lg font-semibold">Igor de Souza</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-300 p-8 mt-16">
+        <div class="max-w-6xl mx-auto text-center">
+            <span class="text-xl font-bold text-white">AgroTask</span>
+            <p class="mt-2">Projeto Integrador Ildo - TCC</p>
+            <p class="text-sm text-slate-400">Ciência de Dados - UniCEUB | 2º Semestre de 2025</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
