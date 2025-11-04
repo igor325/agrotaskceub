@@ -1,8 +1,7 @@
 # Projeto AgroTask
 
 **Curso:** Ciência de Dados (UniCEUB)
-**Disciplina:** Projeto Integrador Ildo
-**Semestre:** 2º Semestre de 2025
+**Disciplina:** Projeto Integrador II
 
 ## 1. Visão Geral
 
@@ -28,9 +27,9 @@ Isso inclui:
 
 Para organizar o desenvolvimento, sugerem-se os seguintes papéis:
 
-* **Product Owner (PO) & Tech Lead:** Carlos Mateo Wall
+* **Product Owner (PO) & Tech Lead:** Joao Victor Moura
 
-* **Scrum Master & Backend Developer:** Joao Victor Moura
+* **Scrum Master & Backend Developer:** Carlos Mateo Wall
 
 * **Backend Developer (Foco: Integração JetBov & Regras de Negócio):** Lucas Leandro
 
